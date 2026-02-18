@@ -1,0 +1,9 @@
+/* App 1PACT – styles globaux additionnels */
+/* Les couleurs et le layout sont dans index.css et Layout.css */
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}

@@ -1,0 +1,93 @@
+/* ============================================
+   IntelligentBackground3D – fond 3D global
+   Octogone central, strictement arrière-plan.
+   ============================================ */
+
+.intelligent-background-3d {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Layer 1 : photo paysage (nettoyée – texte masqué par overlay) */
+.intelligent-background-3d__base {
+  position: absolute;
+  inset: 0;
+  background-image: url('/bg-layer1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Mobile : recentrer pour que la sphère soit bien visible (moins de ciel, plus centre/bas) */
+@media (max-width: 768px) {
+  .intelligent-background-3d__base {
+    background-position: center 58%;
+  }
+}
+
+/* Overlay pour masquer le texte dans le ciel (dégradé ciel → transparent) */
+.intelligent-background-3d__base::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-sand) 0%,
+    var(--color-sand-80) 20%,
+    var(--color-sand-60) 45%,
+    var(--color-sand-40) 58%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* Légère teinte pour harmoniser avec l’octogone 3D */
+.intelligent-background-3d__base::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 100% 80% at 50% 50%,
+    transparent 40%,
+    var(--color-green-40) 100%
+  );
+  pointer-events: none;
+}
+
+/* Layer 2 : canvas Three.js (octogone 3D) */
+.intelligent-background-3d__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  contain: strict;
+}
+
+/* Halo atmosphérique central (type ref photo) – au-dessus du canvas */
+.intelligent-background-3d::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 50%,
+    var(--color-green-20) 0%,
+    var(--color-green-10) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intelligent-background-3d__canvas {
+    /* Animation déjà réduite dans le JS */
+  }
+}

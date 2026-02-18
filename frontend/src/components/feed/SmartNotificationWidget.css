@@ -1,0 +1,125 @@
+/* Même style visuel que l’ancien bloc Portefeuille : carte arrondie, hover */
+.smart-notif-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: box-shadow var(--duration-smooth) var(--ease-smooth),
+    transform 0.2s;
+}
+
+.smart-notif-widget:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+.smart-notif-widget:active {
+  transform: scale(0.99);
+}
+
+.smart-notif-widget__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.smart-notif-widget__icon-wrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.smart-notif-widget__icon {
+  display: block;
+}
+
+.smart-notif-widget__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-off-white);
+  background: var(--color-impact-green);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smart-notif-widget__title-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.smart-notif-widget__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+  margin: 0 0 2px;
+}
+
+.smart-notif-widget__subtitle {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-secondary);
+  margin: 0;
+  opacity: 0.95;
+}
+
+.smart-notif-widget__list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--color-sand-60);
+  padding-top: 0.75rem;
+}
+
+.smart-notif-widget__item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-sand-60);
+  font-size: 0.9rem;
+  color: var(--color-panel-text-primary);
+}
+
+.smart-notif-widget__item:last-child {
+  border-bottom: none;
+}
+
+.smart-notif-widget__item strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.smart-notif-widget__item-sub {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-panel-text-secondary);
+}
+
+.smart-notif-widget__item-time {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.smart-notif-widget__item.is-new strong {
+  color: var(--color-impact-green-light);
+}

@@ -1,0 +1,306 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   1PACT – Design System 2026
+   Deux couleurs uniquement : Beige sable désert + Vert militaire #596643
+   Nuances par opacité, ombres, lighten/darken uniquement.
+   ============================================ */
+
+:root {
+  /* ========== VERT #596643 (inchangé) + nuances autorisées ========== */
+  --color-green: #596643;
+  --color-green-hover: #51603d;
+  --color-green-subtle: #5c6848;
+  --color-green-10: rgba(89, 102, 67, 0.1);
+  --color-green-20: rgba(89, 102, 67, 0.2);
+  --color-green-40: rgba(89, 102, 67, 0.4);
+  --color-green-darkest: #252d1c;
+
+  /* ========== BEIGE SABLE DÉSERT + nuances autorisées ========== */
+  --color-sand: #d4c4a8;
+  --color-sand-mid: #c4b098;
+  --color-sand-dark: #b8a184;
+  --color-sand-warm: #dbcbb0;
+  --color-sand-deep: #c0b098;
+  --color-sand-80: rgba(212, 196, 168, 0.8);
+  --color-sand-60: rgba(212, 196, 168, 0.6);
+  --color-sand-40: rgba(212, 196, 168, 0.4);
+
+  /* Dégradés : beige uniquement (boutons CTA type beige) */
+  --gradient-cta: linear-gradient(135deg, var(--color-sand) 0%, var(--color-sand-mid) 50%, var(--color-sand-dark) 100%);
+  --gradient-cta-hover: linear-gradient(135deg, var(--color-sand-warm) 0%, var(--color-sand) 50%, var(--color-sand-deep) 100%);
+
+  /* Aliases rétrocompatibilité (dérivés des 2 couleurs) */
+  --color-green-light: var(--color-green-subtle);
+  --color-green-lighter: var(--color-green-subtle);
+  --color-green-dark: var(--color-green-hover);
+  --color-green-darker: var(--color-green-hover);
+  --color-text-on-beige: var(--color-green);
+  --color-text-main: var(--color-green);
+  --color-link: var(--color-green);
+  --color-link-hover: var(--color-green-hover);
+  --color-panel-text-primary: var(--color-green);
+  --color-panel-text-secondary: var(--color-green);
+  --color-primary: var(--color-green);
+  --color-deep-green: var(--color-green-hover);
+  --color-deep-green-light: var(--color-green);
+  --color-petrol: var(--color-green);
+  --color-beige: var(--color-sand-warm);
+  --color-impact-green: var(--color-green);
+  --color-impact-green-light: var(--color-green-subtle);
+
+  /* Fonds : beige uniquement */
+  --color-mist: var(--color-sand-warm);
+  --color-mist-light: var(--color-sand-warm);
+  --color-mist-dark: var(--color-sand-deep);
+  --color-background: linear-gradient(180deg, var(--color-sand-warm) 0%, var(--color-sand) 35%, var(--color-sand-deep) 100%);
+
+  /* Cartes / widgets : beige sable */
+  --color-card: var(--color-sand-80);
+  --color-card-glass: var(--color-sand-60);
+  --color-nav-dropdown-glass: var(--color-sand-80);
+  --color-nav-dropdown-glass-border: var(--color-sand-60);
+  --color-nav-dropdown-text: var(--color-green);
+  --color-nav-dropdown-text-muted: var(--color-green);
+  --color-nav-dropdown-divider: var(--color-green-10);
+  --color-nav-dropdown-hover: var(--color-sand-40);
+
+  /* Ombres : vert en opacité 10–20 % uniquement */
+  --shadow-soft: 0 4px 20px var(--color-green-10);
+  --shadow-soft-lg: 0 8px 32px var(--color-green-20);
+  --shadow-glow: 0 0 40px var(--color-green-20);
+  --shadow-card: 0 4px 24px var(--color-green-10), 0 0 0 1px var(--color-sand-60);
+  --shadow-focus: 0 0 0 2px var(--color-green), 0 0 0 4px var(--color-green-20);
+  --shadow-soft-up: 6px 6px 12px var(--color-sand-deep), -6px -6px 12px var(--color-sand-warm);
+  --shadow-soft-in: inset 4px 4px 8px var(--color-sand-deep), inset -4px -4px 8px var(--color-sand-warm);
+
+  --radius: 14px;
+  --radius-card: 20px;
+  --radius-card-lg: 28px;
+  --radius-pill: 999px;
+  --radius-16: 16px;
+  --header-height: 56px;
+  --nav-height: 52px;
+
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-smooth: 200ms;
+  --duration-profile: 200ms;
+}
+
+/* Thème sombre : vert très foncé (nuance) + beige pour le texte */
+[data-theme="dark"] {
+  --color-background: linear-gradient(180deg, var(--color-green-darkest) 0%, var(--color-green-darkest) 100%);
+  --color-mist: var(--color-green-darkest);
+  --color-mist-light: var(--color-green-darkest);
+  --color-mist-dark: var(--color-green-darkest);
+  --color-text-main: var(--color-sand-warm);
+  --color-card: var(--color-sand-40);
+  --color-card-glass: var(--color-sand-40);
+  --color-nav-dropdown-glass: var(--color-sand-40);
+  --color-nav-dropdown-glass-border: var(--color-sand-60);
+  --color-nav-dropdown-text: var(--color-sand-warm);
+  --color-nav-dropdown-text-muted: var(--color-sand);
+  --color-nav-dropdown-divider: var(--color-green-20);
+  --color-nav-dropdown-hover: var(--color-green-10);
+  --color-panel-text-primary: var(--color-sand-warm);
+  --color-panel-text-secondary: var(--color-sand);
+  --shadow-soft: 0 4px 20px var(--color-green-40);
+  --shadow-soft-lg: 0 8px 32px var(--color-green-40);
+  --shadow-card: 0 4px 24px var(--color-green-20), 0 0 0 1px var(--color-sand-60);
+}
+
+[data-theme="dark"] body {
+  color: var(--color-text-main);
+}
+
+/* Transition douce au changement de thème */
+html {
+  transition: background 0.3s var(--ease-smooth);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fond de secours : vert très foncé (nuance de #596643) */
+html {
+  background-color: var(--color-green-darkest);
+}
+
+/* Conteneur global : fond image (photo) + routes (contenu au-dessus) */
+.app-shell {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+}
+
+.app-routes {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+}
+
+/* Fallback pendant chargement lazy – même image exacte, pas de couleur dominante */
+.background-image-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/bg-main.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: var(--color-green-darkest);
+}
+
+@media (max-width: 768px) {
+  .background-image-fallback {
+    background-position: center center;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  color: var(--color-text-main);
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+/* Fond atmosphérique : beige + vert en transparence uniquement */
+.bg-atmospheric {
+  background:
+    radial-gradient(ellipse 130% 80% at 10% 0%, var(--color-sand-80) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 85% 10%, var(--color-sand-40) 0%, transparent 60%),
+    radial-gradient(ellipse 120% 90% at 50% 100%, var(--color-green-20) 0%, transparent 70%),
+    var(--color-mist);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+a:hover { color: var(--color-link-hover); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---- Bouton primaire beige : fond beige, texte vert, bordure vert ---- */
+.btn-primary {
+  background: var(--color-sand);
+  color: var(--color-green);
+  padding: 12px 24px;
+  border-radius: var(--radius-card);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 2px solid var(--color-green);
+  box-shadow: var(--shadow-soft);
+  transition: background var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth), transform var(--duration-smooth) var(--ease-smooth);
+}
+.btn-primary:hover {
+  background: var(--color-sand-warm);
+  box-shadow: var(--shadow-glow);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ---- Bouton secondaire vert : fond vert, texte beige, bordure beige ---- */
+.btn-secondary {
+  background: var(--color-green);
+  color: var(--color-sand);
+  padding: 10px 20px;
+  border-radius: var(--radius-card);
+  font-weight: 600;
+  border: 2px solid var(--color-sand);
+  transition: background var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+.btn-secondary:hover {
+  background: var(--color-green-hover);
+  box-shadow: var(--shadow-soft);
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ---- Card standard : fond beige, texte vert, bordure vert ---- */
+.card-standard {
+  background: var(--color-card);
+  color: var(--color-panel-text-primary);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-green-20);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+.card-standard:hover {
+  box-shadow: var(--shadow-soft-lg);
+}
+
+/* ---- AuthGuard : écran de vérification de session ---- */
+.auth-guard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.auth-guard-loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-green-20);
+  border-top-color: var(--color-green);
+  border-radius: 50%;
+  animation: auth-guard-spin 0.8s linear infinite;
+}
+
+.auth-guard-loading__text {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  opacity: 0.9;
+}
+
+@keyframes auth-guard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Card premium : beige glass, bordure vert ---- */
+.card-premium {
+  background: var(--color-card-glass);
+  color: var(--color-panel-text-primary);
+  border-radius: var(--radius-card-lg);
+  border: 1px solid var(--color-green-20);
+  box-shadow: var(--shadow-soft-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Rétrocompatibilité */
+.card-neumorphic {
+  background: var(--color-card);
+  color: var(--color-panel-text-primary);
+  border-radius: var(--radius-card-lg);
+  border: 1px solid var(--color-green-20);
+  box-shadow: var(--shadow-card);
+}

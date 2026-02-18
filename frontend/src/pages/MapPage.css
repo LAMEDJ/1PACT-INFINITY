@@ -1,0 +1,800 @@
+/* ============================================
+   Carte 1PACT – Redesign immersif
+   Inspiration RENON (organique) + AR Navigation (premium)
+   Palette sombre teal/cyan, glow, profondeur
+   ============================================ */
+
+/* ----- Variables design (Phases 2 + 6) ----- */
+.map-page--immersive {
+  --map-bg-dark: var(--color-green-darkest);
+  --map-bg-deep: var(--color-green-darkest);
+  --map-teal: var(--color-green);
+  --map-cyan: var(--color-sand-mid);
+  --map-cyan-dim: var(--color-sand-60);
+  --map-green: var(--color-green);
+  --map-route-color: var(--color-sand);
+  --map-user-dot: var(--color-sand);
+  --map-quest-dot: var(--color-green);
+  --map-glow-cyan: 0 0 20px var(--color-green-40);
+  --map-glow-green: 0 0 16px var(--color-green-40);
+  --map-overlay-bg: var(--color-green-darkest);
+  --map-overlay-border: var(--color-sand-60);
+  --map-overlay-text: var(--color-sand);
+  --map-overlay-text-dim: var(--color-sand-80);
+  --map-card-glass: var(--color-green-40);
+  --map-card-shadow: 0 8px 32px var(--color-green-40);
+}
+
+.map-page {
+  background: transparent;
+}
+
+.map-page--gps {
+  --map-route-color: var(--map-route-color, var(--color-sand));
+  --map-overlay-text: var(--map-overlay-text);
+  --map-overlay-text-dim: var(--map-overlay-text-dim);
+}
+
+.map-page .page-inner {
+  padding-bottom: 0;
+}
+
+/* ----- Phase 1 : Structure immersive ----- */
+.map-page--immersive {
+  position: relative;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  isolation: isolate;
+  -webkit-overflow-scrolling: touch;
+}
+
+.map-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 120% 100% at 50% 40%,
+    var(--color-green-40) 0%,
+    var(--map-bg-deep) 50%,
+    var(--color-green-darkest) 100%
+  );
+  pointer-events: none;
+}
+
+.map-layer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ----- Barre supérieure sticky (Quêtes / Profil / Score / Inventaire) ----- */
+.map-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  flex-shrink: 0;
+  background: var(--map-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--map-overlay-border);
+  padding: 0.75rem 1rem;
+  transition: padding 0.28s ease, background 0.28s ease;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-top-bar {
+    transition: padding 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+  }
+}
+
+.map-top-bar__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-top-bar__tab {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--map-overlay-text-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-top-bar__tab:hover {
+  background: var(--color-sand-40);
+  color: var(--map-overlay-text);
+}
+
+.map-top-bar__tab.active {
+  background: var(--color-green-20);
+  color: var(--map-cyan);
+}
+
+.map-top-bar__label {
+  display: inline-block;
+  transition: transform 0.28s ease;
+}
+
+/* État compact au scroll : padding et contenu plus serrés */
+.map-top-bar--compact {
+  padding: 0.4rem 0.75rem;
+  box-shadow: 0 4px 20px var(--color-green-40);
+}
+
+.map-top-bar--compact .map-top-bar__tab {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.map-top-bar--compact .map-top-bar__label {
+  transform: scale(0.95);
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-top-bar,
+  .map-top-bar--compact .map-top-bar__label {
+    transition: none;
+  }
+  .map-top-bar--compact .map-top-bar__label {
+    transform: none;
+  }
+}
+
+/* Contenu des onglets sous la barre (défile avec la page) */
+.map-top-bar-content {
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-green-40);
+  border-bottom: 1px solid var(--map-overlay-border);
+}
+
+.map-top-bar-content .map-overlay__content {
+  max-height: 40vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Section contrôles sous la carte (Carte 1PACT, position, Plan/Satellite) */
+.map-controls {
+  flex-shrink: 0;
+  padding: 1rem 1rem 1.5rem;
+  margin: 0 0.75rem 0.75rem;
+  background: var(--map-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-card-lg);
+  border: 1px solid var(--map-overlay-border);
+  box-shadow: var(--map-card-shadow);
+}
+
+.map-controls .map-page__title {
+  margin-top: 0;
+}
+
+.map-controls .map-page__desc {
+  margin-bottom: 0.75rem;
+}
+
+.map-controls .map-page__controls {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .map-controls {
+    margin: 0 0.5rem 0.5rem;
+    padding: 0.75rem 1rem 1rem;
+  }
+}
+
+/* ----- Phase 3 : UI flottante premium (header) ----- */
+.map-page__header {
+  padding: 1rem 1rem 0.75rem;
+  max-width: 100%;
+}
+
+.map-page__header--float {
+  background: var(--map-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-card-lg);
+  margin: 0.75rem;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--map-card-shadow);
+  border: 1px solid var(--map-overlay-border);
+}
+
+.map-page__title {
+  font-size: 1.35rem;
+  margin-bottom: 0.35rem;
+  color: var(--map-overlay-text);
+  font-weight: 700;
+}
+
+.map-page__desc {
+  color: var(--map-overlay-text-dim);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.map-page__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.map-page__btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.map-page__btn--geo {
+  background: linear-gradient(135deg, var(--map-teal), var(--map-cyan));
+  color: var(--color-green-darkest);
+  box-shadow: var(--map-glow-cyan);
+}
+
+.map-page__btn--geo:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 24px var(--color-green-40);
+}
+
+.map-page__btn--geo:active {
+  transform: scale(0.98);
+}
+
+.map-page__btn--cta {
+  background: linear-gradient(135deg, var(--map-green), var(--map-cyan));
+  color: var(--color-green-darkest);
+  margin-top: 0.5rem;
+  box-shadow: var(--map-glow-green);
+}
+
+.map-page__btn--cta:hover {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+.map-page__tile-toggle {
+  display: flex;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-sand-40);
+  border: 1px solid var(--map-overlay-border);
+}
+
+.map-page__tile-toggle button {
+  padding: 0.45rem 0.9rem;
+  border: none;
+  background: transparent;
+  color: var(--map-overlay-text-dim);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.map-page__tile-toggle button.active {
+  background: var(--color-green-20);
+  color: var(--map-cyan);
+}
+
+.map-page__geo-error {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-green-hover);
+}
+
+.map-page__rgpd {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--map-overlay-text-dim);
+  max-width: 42rem;
+}
+
+/* ----- Phase 2 : Carte centrée, dégradé bords ----- */
+.map-container {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--map-bg-deep);
+  position: relative;
+}
+
+.map-container--full {
+  flex: 1;
+  height: calc(100vh - var(--header-height, 56px) - var(--nav-height, 72px) - 180px);
+  min-height: 360px;
+}
+
+.map-container--centered {
+  border-radius: var(--radius-card-lg);
+  margin: 0 0.75rem 0.75rem;
+  box-shadow: var(--map-card-shadow), inset 0 0 0 1px var(--map-overlay-border);
+}
+
+.map-container__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    transparent 40%,
+    var(--color-green-40) 100%
+  );
+}
+
+.map-leaflet {
+  border-radius: inherit;
+}
+
+.map-leaflet--gps {
+  z-index: 0;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--map-bg-deep);
+  color: var(--map-overlay-text-dim);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ----- Itinéraire (ligne fluide + glow) ----- */
+.map-route-line {
+  filter: drop-shadow(0 0 6px var(--color-green-40));
+}
+
+/* Marqueurs départ / arrivée de l’itinéraire */
+.map-route-marker-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+}
+
+.map-route-marker-start .map-route-marker-dot {
+  background: var(--color-green);
+  box-shadow: 0 0 10px var(--color-green-40);
+}
+
+.map-route-marker-end .map-route-marker-dot {
+  background: var(--color-green-hover);
+  box-shadow: 0 0 10px var(--color-green-40);
+}
+
+/* ----- Phase 2 + 4 : Points interactifs lumineux (marqueurs) ----- */
+.map-user-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.map-user-marker-dot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--map-user-dot);
+  border: 2px solid var(--color-sand);
+  box-shadow: 0 0 12px var(--map-cyan-dim), 0 0 24px var(--color-green-40);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-user-marker-dot {
+    animation: map-node-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes map-node-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.95; }
+}
+
+.map-quest-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.map-quest-marker-dot {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--map-quest-dot);
+  border: 2px solid var(--color-sand);
+  box-shadow: 0 0 14px var(--color-green-40), 0 2px 10px var(--color-green-40);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-quest-marker-dot {
+    animation: map-node-pulse 2.2s ease-in-out infinite;
+  }
+}
+
+.map-quest-marker--in-range .map-quest-marker-dot {
+  box-shadow: 0 0 0 6px var(--color-green-40), 0 0 20px var(--color-green-40);
+  transform: scale(1.1);
+}
+
+.map-quest-marker-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-sand);
+  box-shadow: var(--map-glow-green);
+}
+
+/* ----- Phase 3 + 4 : Popups cartes modernes (glassmorphism) ----- */
+.map-container .leaflet-popup-content-wrapper,
+.map-popup-quest-wrap .leaflet-popup-content-wrapper {
+  background: var(--map-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--map-card-shadow), 0 0 0 1px var(--map-overlay-border);
+  border: 1px solid var(--map-overlay-border);
+}
+
+.map-popup-category {
+  color: var(--map-cyan);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.map-popup-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: 600;
+  color: var(--map-cyan);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.map-popup-link:hover {
+  text-decoration: underline;
+  filter: brightness(1.15);
+  transform: scale(1.02);
+}
+
+.map-popup-quest strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--map-overlay-text);
+}
+
+.map-popup-quest p {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--map-overlay-text-dim);
+}
+
+.map-popup-reward {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--map-cyan);
+  font-weight: 600;
+}
+
+.map-popup-distance {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--map-overlay-text-dim);
+}
+
+.map-overlay__tab,
+.map-top-bar__tab {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--map-overlay-text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.map-overlay__tab:hover {
+  transform: scale(1.02);
+}
+
+.map-overlay__tab.active {
+  background: var(--color-green-20);
+  color: var(--map-cyan);
+}
+
+.map-overlay__panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.map-overlay__content h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--map-overlay-text);
+}
+
+.map-overlay__placeholder {
+  font-size: 0.9rem;
+  color: var(--map-overlay-text-dim);
+}
+
+.map-overlay__user-name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--map-overlay-text);
+}
+
+.map-overlay__link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--map-cyan);
+  font-weight: 600;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.map-overlay__link:hover {
+  text-decoration: underline;
+  filter: brightness(1.2);
+  transform: scale(1.02);
+}
+
+.map-overlay__score-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--map-cyan);
+  margin-bottom: 0.35rem;
+  text-shadow: 0 0 12px var(--map-cyan-dim);
+}
+
+.map-inventory-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+}
+
+.map-inventory-item {
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.35rem;
+  background: var(--color-sand-40);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--map-overlay-text);
+  border: 1px solid var(--map-overlay-border);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.map-inventory-item:hover {
+  transform: scale(1.02);
+  background: var(--color-sand-60);
+}
+
+.map-quest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.map-quest-list li {
+  margin-bottom: 0.35rem;
+}
+
+.map-quest-list li button {
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-sand-40);
+  color: var(--map-overlay-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+.map-quest-list li button:hover {
+  background: var(--color-sand-60);
+  transform: scale(1.02);
+}
+
+.map-quest-list li button:active {
+  transform: scale(0.98);
+}
+
+.map-quest-list li button.selected {
+  outline: none;
+  border-color: var(--map-cyan);
+  box-shadow: 0 0 0 1px var(--map-cyan), 0 0 12px var(--map-cyan-dim);
+}
+
+.map-quest-list li.in-range button {
+  border-left: 3px solid var(--map-quest-dot);
+}
+
+.map-quest-list__title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.map-quest-list__dist {
+  font-size: 0.8rem;
+  color: var(--map-overlay-text-dim);
+}
+
+.map-quest-list__badge {
+  font-size: 0.75rem;
+  background: var(--map-quest-dot);
+  color: var(--color-green-darkest);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  box-shadow: var(--map-glow-green);
+}
+
+.map-route-build {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--map-overlay-border);
+}
+
+.map-route-mode {
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--map-overlay-border);
+  background: var(--color-sand-60);
+  color: var(--map-overlay-text);
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.map-route-info {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--map-overlay-text-dim);
+}
+
+/* Clusters (style cyan/teal) */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: var(--color-green-40) !important;
+}
+
+.marker-cluster div {
+  background-color: var(--color-sand-80) !important;
+  color: var(--color-green-darkest);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Contrôles Leaflet (zoom + attribution) thème sombre */
+.map-container .leaflet-control-zoom {
+  border: 1px solid var(--map-overlay-border) !important;
+  box-shadow: var(--map-card-shadow) !important;
+}
+
+.map-container .leaflet-control-zoom a {
+  background: var(--map-card-glass) !important;
+  color: var(--map-overlay-text) !important;
+  border: none !important;
+}
+
+.map-container .leaflet-control-zoom a:hover {
+  background: var(--color-green-20) !important;
+  color: var(--map-cyan) !important;
+}
+
+.map-container .leaflet-control-attribution {
+  background: var(--color-green-darkest) !important;
+  color: var(--map-overlay-text-dim) !important;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 0 var(--radius) 0 0;
+  border: 1px solid var(--map-overlay-border);
+  border-bottom: none;
+}
+
+.map-container .leaflet-control-attribution a {
+  color: var(--map-cyan) !important;
+}
+
+/* Accessibilité : focus visible */
+.map-page__btn:focus-visible,
+.map-page__tile-toggle button:focus-visible,
+.map-top-bar__tab:focus-visible,
+.map-overlay__tab:focus-visible,
+.map-quest-list li button:focus-visible,
+.map-overlay__link:focus-visible {
+  outline: 2px solid var(--map-cyan);
+  outline-offset: 2px;
+}
+
+/* ----- Phase 7 : Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  .map-page__btn,
+  .map-top-bar__tab,
+  .map-overlay__tab,
+  .map-quest-list li button,
+  .map-inventory-item,
+  .map-popup-link {
+    transition: none;
+  }
+  .map-user-marker-dot,
+  .map-quest-marker-dot {
+    animation: none;
+  }
+}
+
+/* ----- Mobile ----- */
+@media (max-width: 640px) {
+  .map-container--full {
+    height: calc(100vh - var(--header-height, 56px) - var(--nav-height, 72px) - 140px);
+  }
+
+  .map-page__header--float {
+    margin: 0.5rem;
+  }
+
+  .map-container--centered {
+    margin: 0 0.5rem 0.5rem;
+  }
+
+  .map-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .map-page__tile-toggle {
+    align-self: flex-start;
+  }
+
+  .map-top-bar__tabs {
+    gap: 0.2rem;
+  }
+
+  .map-top-bar__tab {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}

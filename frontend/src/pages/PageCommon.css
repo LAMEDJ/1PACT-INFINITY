@@ -1,0 +1,104 @@
+/* Styles communs à toutes les pages – design cohérent avec le menu en pilule */
+
+.page {
+  min-height: 100%;
+  background: transparent;
+}
+
+.page-inner {
+  padding: 1rem 1.25rem;
+  padding-bottom: calc(var(--nav-height) + 2.5rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page h2 {
+  color: var(--color-panel-text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.page p {
+  color: var(--color-panel-text-secondary);
+  opacity: 0.95;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.page-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.page-hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.placeholder-page .page-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.placeholder-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.placeholder-actions .btn-primary,
+.placeholder-actions .btn-secondary {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.placeholder-actions .btn-primary:active,
+.placeholder-actions .btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Lien Retour commun (pages Publier, Dashboard, Association, etc.) */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-panel-text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+
+.back-link:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Page 404 */
+.not-found-page {
+  background: transparent;
+}
+
+.not-found-inner {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.not-found-inner .btn-primary {
+  margin-top: 1rem;
+}

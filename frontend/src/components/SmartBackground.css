@@ -1,0 +1,91 @@
+/* ============================================
+   SmartBackground – fond intelligent global
+   Purement décoratif, ne modifie pas le layout.
+   ============================================ */
+
+.smart-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Couche 1 : fond type Photo 1 (full screen, cover, center) */
+/* Si vous ajoutez public/bg-main.webp (photo nettoyée), il sera utilisé en priorité */
+.smart-background-base {
+  position: absolute;
+  inset: 0;
+  background-image:
+    url('/bg-main.webp'),
+    radial-gradient(ellipse 120% 100% at 50% 50%, rgba(233, 221, 210, 0.98) 0%, rgba(216, 207, 196, 0.95) 50%, rgba(200, 192, 182, 0.92) 100%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Couche 2 : conteneur de l’octogone exactement au centre */
+.smart-background-octagon-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(78vmin, 480px);
+  height: min(78vmin, 480px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG octogone : mouvement intelligent (rotation + pulsation + flottement) */
+.smart-background-octagon {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  animation: octagon-intelligent 12s ease-in-out infinite;
+}
+
+/* Un seul keyframes avec transform pour optimisation GPU */
+@keyframes octagon-intelligent {
+  0%, 100% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.035) translateY(-6px);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.98) translateY(4px);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.04) translateY(-8px);
+  }
+}
+
+/* Particules : légère variation d’opacité pour effet vivant */
+.octagon-particle {
+  animation: particle-twinkle 2.5s ease-in-out infinite;
+}
+
+.octagon-particle:nth-child(odd) {
+  animation-delay: 0.4s;
+}
+
+.octagon-particle:nth-child(3n) {
+  animation-delay: 0.8s;
+}
+
+@keyframes particle-twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Noyau : pulsation très légère (transform-origin pour scale correct) */
+.octagon-core {
+  transform-origin: 50% 50%;
+  animation: core-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes core-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.06); }
+}

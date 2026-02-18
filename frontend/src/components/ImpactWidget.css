@@ -1,0 +1,178 @@
+/* Widget Points Impact – glassmorphism, popover / bottom sheet */
+
+.impact-widget-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--color-green-40);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.impact-widget {
+  position: fixed;
+  z-index: 201;
+  background: var(--color-card-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-card), var(--shadow-soft-lg);
+  border: 1px solid var(--color-sand-60);
+  max-width: 380px;
+  width: calc(100% - 2rem);
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .impact-widget {
+  background: var(--color-sand-80);
+  border-color: var(--color-sand-60);
+}
+
+/* Desktop : popover sous la navbar, un peu plus bas */
+.impact-widget--popover {
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0;
+}
+
+@media (min-width: 1024px) {
+  .impact-widget--popover {
+    left: 50%;
+    max-width: 400px;
+  }
+}
+
+/* Mobile : bottom sheet au-dessus de la barre de navigation bas */
+.impact-widget--bottom {
+  bottom: var(--nav-height, 52px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  border-radius: var(--radius-card-lg) var(--radius-card-lg) 0 0;
+  max-height: calc(100vh - var(--nav-height, 52px) - 2rem);
+}
+
+.impact-widget__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-sand-60);
+}
+
+.impact-widget__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+  margin: 0;
+}
+
+.impact-widget__close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-panel-text-secondary);
+  background: var(--color-sand-40);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.impact-widget__close:hover {
+  background: var(--color-sand-60);
+  color: var(--color-panel-text-primary);
+}
+
+.impact-widget__progress-wrap {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-sand-60);
+}
+
+.impact-widget__distinction {
+  font-size: 0.75rem;
+  color: var(--color-panel-text-secondary);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.impact-widget__points-label {
+  font-weight: 600;
+  color: var(--color-panel-text-primary);
+}
+
+.impact-widget__level-label {
+  font-weight: 600;
+  color: var(--color-impact-green);
+}
+
+.impact-widget__progress-bar {
+  height: 8px;
+  background: var(--color-sand-40);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.impact-widget__progress-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-impact-green));
+  border-radius: var(--radius-pill);
+}
+
+.impact-widget__progress-label {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-secondary);
+  margin: 0;
+}
+
+.impact-widget__progress-label strong {
+  color: var(--color-panel-text-primary);
+}
+
+.impact-widget__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1.25rem 1.25rem;
+  overflow-y: auto;
+}
+
+.impact-widget__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-sand-60);
+  font-size: 0.9rem;
+}
+
+.impact-widget__row:last-child {
+  border-bottom: none;
+}
+
+.impact-widget__row-icon {
+  width: 24px;
+  text-align: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.impact-widget__row-label {
+  flex: 1;
+  color: var(--color-panel-text-secondary);
+}
+
+.impact-widget__row-value {
+  font-weight: 600;
+  color: var(--color-panel-text-primary);
+}

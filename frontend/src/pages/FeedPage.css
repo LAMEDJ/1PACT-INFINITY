@@ -1,0 +1,308 @@
+/* Fil d'actualité – Design 2026 : cards glassmorphism, dégradés doux */
+
+.feed-page {
+  background: transparent;
+}
+
+.feed-inner {
+  padding: 16px 16px calc(var(--nav-height) + 2rem);
+}
+
+.feed-hero {
+  text-align: center;
+  padding: 1rem 0 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Titre et slogan en bleu nuit – sélecteurs renforcés pour passer avant .page h2 / .page p */
+.feed-hero .feed-hero-title,
+.feed-page .feed-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #152238 !important;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.feed-hero .feed-hero-slogan,
+.feed-page .feed-hero-slogan {
+  font-size: 1rem;
+  color: #152238 !important;
+  opacity: 0.92;
+  margin: 0 0 0.5rem;
+}
+
+.feed-hero-user {
+  font-size: 0.9rem;
+  color: var(--color-panel-text-secondary);
+  margin: 0;
+}
+
+.feed-hero-user strong {
+  color: var(--color-panel-text-primary);
+}
+
+/* ----- Section Découvrir ----- */
+.feed-discover {
+  margin-top: 0.5rem;
+}
+
+.feed-discover-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+  margin-bottom: 1rem;
+}
+
+.feed-loading,
+.feed-empty {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.95;
+}
+
+/* Message succès/erreur après envoi proposition */
+.feed-proposal-message {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.feed-proposal-message--success {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--color-panel-text-primary);
+}
+.feed-proposal-message--error {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-panel-text-primary);
+}
+
+/* Cartes en défilement horizontal */
+.feed-cards-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feed-cards-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.feed-cards-scroll::-webkit-scrollbar-thumb {
+  background: rgba(219, 198, 184, 0.45);
+  border-radius: 3px;
+}
+
+.feed-discover-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.feed-discover-card:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+.feed-discover-card-image-wrap {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: rgba(219, 198, 184, 0.15);
+}
+
+.feed-discover-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-discover-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(219, 198, 184, 0.2) 0%, rgba(247, 178, 139, 0.2) 100%);
+}
+
+.feed-discover-card-like {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.feed-discover-card-like:hover {
+  transform: scale(1.1);
+}
+
+.feed-discover-card-like.liked {
+  background: var(--color-primary);
+}
+
+.feed-discover-card-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.feed-discover-card-progress-bar {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.feed-discover-card-body {
+  padding: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.feed-discover-card-author {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-primary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.feed-discover-card-text {
+  font-size: 0.95rem;
+  color: var(--color-panel-text-primary);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.feed-discover-card-meta {
+  font-size: 0.75rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.9;
+}
+
+/* Boutons de la carte : taille réduite, alignés horizontalement */
+.feed-discover-card-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 6px;
+  padding: 6px 10px;
+  border-top: 1px solid rgba(219, 198, 184, 0.3);
+}
+
+.feed-discover-card-actions .feed-action-btn {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(219, 198, 184, 0.35);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-panel-text-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.feed-discover-card-actions .feed-action-btn:hover:not(:disabled) {
+  background: rgba(219, 198, 184, 0.25);
+}
+
+.feed-discover-card-participate {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-beige);
+  background: var(--color-primary);
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.feed-discover-card-participate:hover {
+  opacity: 0.95;
+}
+
+/* Commentaires dans la carte */
+.feed-comments-panel {
+  margin: 0 12px 12px;
+  padding: 10px;
+  background: rgba(61, 70, 51, 0.75);
+  border-radius: 8px;
+  border: 1px solid rgba(219, 198, 184, 0.35);
+}
+
+.feed-comments-panel h4 {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  color: var(--color-panel-text-primary);
+}
+
+.feed-comments-list {
+  list-style: none;
+  margin-bottom: 8px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.feed-comments-list li {
+  padding: 4px 0;
+  font-size: 0.85rem;
+  color: var(--color-panel-text-primary);
+  border-bottom: 1px solid rgba(219, 198, 184, 0.25);
+}
+
+.feed-comment-date {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.9;
+  margin-top: 1px;
+}
+
+.feed-comment-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.feed-comment-form input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid rgba(219, 198, 184, 0.4);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--color-panel-text-primary);
+}
+
+.feed-comment-form input:focus {
+  outline: none;
+  border-color: var(--color-panel-text-primary);
+}
+
+.feed-action-btn.liked {
+  color: var(--color-panel-text-primary);
+}

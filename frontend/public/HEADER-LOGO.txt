@@ -1,0 +1,16 @@
+Photo / logo au-dessus du titre "1PACT" dans la barre en haut
+================================================================
+
+Pour afficher VOTRE photo exacte juste au-dessus du titre "1PACT" :
+
+1. Enregistrez votre image (PNG ou JPG) avec l'un de ces noms :
+   - header-logo.png
+   - header-logo.jpg
+   - logo.png
+
+2. Placez le fichier dans CE dossier (public/), au même niveau que ce fichier.
+
+3. Rechargez la page : l'image s'affichera automatiquement au-dessus du titre.
+
+Le site cherche dans cet ordre : header-logo.png → header-logo.jpg → logo.png → logo.svg.
+Dès qu'un fichier existe, il est affiché.

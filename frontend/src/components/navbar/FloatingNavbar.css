@@ -1,0 +1,968 @@
+/**
+ * Bande slogan défilante + Navbar flottante premium.
+ * Ticker 24–32px, navbar fixed, rounded 2xl, déploiement/repliement au scroll et au clic.
+ */
+
+/* ========== TICKER BANDE SLOGAN ========== */
+.ticker-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  height: 28px;
+  max-height: 32px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--color-sand-80) 0%, var(--color-sand-60) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-sand-60);
+}
+
+.ticker-banner__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker-banner__track--paused {
+  animation-play-state: paused;
+}
+
+.ticker-banner__text {
+  flex-shrink: 0;
+  padding: 0 3rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ========== NAVBAR FLOTTANTE ========== */
+.floating-nav-wrap {
+  --barnav-radius: 0.75rem;
+  --barnav-gap: 12px;
+  --barnav-gap-row: 6px;
+  --barnav-user-name-color: var(--color-green);
+  --barnav-btn-text-color: var(--color-green);
+  --barnav-shadow: 0 4px 24px var(--color-green-10), 0 2px 8px var(--color-green-10);
+  --barnav-shadow-open: 0 6px 28px var(--color-green-20);
+  --barnav-border-color: var(--color-sand-60);
+  --barnav-border: 1px solid var(--barnav-border-color);
+  position: fixed;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  max-width: min(780px, calc(100% - 20px));
+  padding: 0 14px;
+  transition: top 0.25s ease, transform 0.25s ease;
+}
+
+@media (min-width: 1024px) {
+  .floating-nav-wrap {
+    max-width: 780px;
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-nav-wrap {
+    max-width: calc(100% - 20px);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.floating-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 72px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--color-sand-80) 0%, var(--color-sand-60) 50%, var(--color-sand-60) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  box-shadow: var(--barnav-shadow);
+  border: var(--barnav-border);
+  border: var(--barnav-border);
+  transition: min-height 0.22s ease, padding 0.22s ease, box-shadow 0.22s ease;
+}
+
+.floating-nav--compact {
+  min-height: 60px;
+  padding: 6px 10px;
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-nav--compact .smart-nav-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.floating-nav--compact .smart-nav-icon__svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ========== BARNAV – structure exacte 3 colonnes ========== */
+.barnav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: var(--barnav-gap, 12px);
+  min-height: 72px;
+  padding: 12px 14px;
+  border-radius: var(--barnav-radius, 0.75rem);
+  box-shadow: var(--barnav-shadow);
+  border: var(--barnav-border);
+  transition: min-height 0.25s ease, padding 0.25s ease, box-shadow 0.25s ease;
+}
+
+.barnav--dropdown-open {
+  box-shadow: var(--barnav-shadow-open);
+  padding: 14px 16px;
+  min-height: 76px;
+}
+
+.barnav__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.barnav__col--left {
+  flex-shrink: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 46%;
+  min-width: 0;
+  gap: 8px;
+  padding-right: 4px;
+  padding-top: 0;
+}
+
+.barnav__col--center {
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.barnav__col--right {
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.barnav__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.barnav__row--name {
+  min-height: 28px;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 2px;
+  align-self: flex-start;
+}
+
+.barnav__row--widget {
+  margin-top: 2px;
+  width: 100%;
+}
+
+.barnav__row--primary {
+  min-height: 44px;
+  align-items: center;
+}
+
+.barnav__row--secondary {
+  min-height: 44px;
+  align-items: center;
+}
+
+.barnav__user-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.barnav__user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--barnav-user-name-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  line-height: 1.25;
+}
+
+.barnav__impact-chip {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-green);
+  background: var(--color-sand-80);
+  border: 1px solid var(--color-sand-60);
+  flex-shrink: 0;
+}
+
+.barnav__impact-panel {
+  width: 100%;
+  max-width: 260px;
+  min-width: 180px;
+}
+
+/* Panneau Stat Niveau : affiché entièrement, sans troncature ni overflow */
+.barnav__impact-panel .impact-widget-nav {
+  margin-top: 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  min-height: 0;
+}
+
+.barnav__impact-panel .impact-widget-nav small {
+  font-size: 10px;
+}
+
+.barnav__impact-btn-wrap {
+  position: relative;
+}
+
+.barnav__impact-dropdown-anchor {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: max-content;
+  padding-top: 8px;
+}
+
+.barnav__impact-dropdown-anchor .smart-nav-dropdown {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* Boutons BarNav : 44px min (zone tactile), texte/icônes beige sable */
+.barnav__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--barnav-btn-text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.barnav__btn:hover {
+  background: var(--color-sand-40);
+  box-shadow: var(--shadow-soft);
+}
+
+.barnav__btn:active {
+  transform: scale(0.97);
+}
+
+.barnav__btn--active {
+  background: var(--color-sand-60);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+
+.barnav__btn--active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-sand-mid);
+  opacity: 0.9;
+}
+
+.barnav__btn:focus-visible {
+  outline: 2px solid var(--color-sand-mid);
+  outline-offset: 2px;
+}
+
+.barnav__btn--settings .barnav__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barnav__btn--settings .barnav__btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.barnav__btn-label {
+  white-space: nowrap;
+}
+
+.barnav .smart-nav__icon-wrap .smart-nav-icon {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.barnav .impact-nav-panel {
+  min-height: 44px;
+}
+
+.barnav .impact-nav-panel:focus-visible {
+  outline: 2px solid var(--color-sand-mid);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .barnav__col--left {
+    max-width: 52%;
+  }
+  .barnav__impact-panel {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .barnav__user-name {
+    max-width: 120px;
+  }
+  .barnav__btn-label {
+    display: none;
+  }
+  .barnav__btn--settings {
+    padding: 8px;
+  }
+}
+
+.floating-nav__brand {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating-nav__brand .layout-brand {
+  flex-direction: row;
+  gap: 8px;
+}
+
+.floating-nav__brand .layout-logo {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.floating-nav__brand .layout-brand-logo-wrap {
+  margin: 0;
+}
+
+.floating-nav__brand .layout-brand-photo {
+  height: 36px;
+  max-width: 48px;
+}
+
+/* Gauche : photo, quêtes, notif + nom en dessous */
+.floating-nav__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.floating-nav__user-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.floating-nav__user-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.floating-nav__user-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.floating-nav__left-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.floating-nav__user-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--barnav-user-name-color);
+  white-space: nowrap;
+}
+
+.floating-nav__impact-chip {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--barnav-user-name-color);
+  background: var(--color-sand-80);
+  border: 1px solid var(--barnav-border-color);
+}
+
+.floating-nav__impact-panel {
+  margin-top: 2px;
+  width: 100%;
+}
+
+.floating-nav__impact-panel--inline {
+  margin-top: 0;
+  margin-left: 8px;
+  max-width: 190px;
+}
+
+/* Centre : tableau de bord + Publier / Proposer / Chercher */
+.floating-nav__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Centre avec bouton Impact : ancrage du dropdown sous le bouton */
+.floating-nav__center--impact {
+  justify-content: center;
+}
+
+.floating-nav__impact-stat-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ancrage du dropdown Impact centré sous le bouton */
+.floating-nav__impact-dropdown-anchor {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: max-content;
+  padding-top: 8px;
+}
+
+.floating-nav__impact-dropdown-anchor .smart-nav-dropdown {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.floating-nav__center-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-nav__actions-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Même taille que le bouton Tableau de bord : padding et hauteur identiques */
+.floating-nav__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: var(--barnav-btn-text-color);
+  background: var(--color-sand-60);
+  border: 1px solid var(--barnav-border-color);
+  border-radius: 0.65rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.floating-nav__action-btn:hover {
+  background: var(--color-sand-40);
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-nav__action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-nav__action-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.floating-nav__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.floating-nav__right--top {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.floating-nav__right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Panneau Impact à droite : le dropdown s’ancre sous le panneau */
+.floating-nav__impact-wrap {
+  position: relative;
+}
+
+.floating-nav__impact-wrap .smart-nav-dropdown--impact {
+  right: 0;
+  left: auto;
+}
+
+/* Clic extérieur overlay (mobile dropdown plein écran) */
+.floating-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--color-green-40);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.floating-nav-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile : navbar plus compacte, dropdown plein écran déjà dans SmartNavbar.css */
+/* Points Impact avec badge dans la navbar */
+.floating-nav__impact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--barnav-btn-text-color);
+  background: var(--gradient-cta);
+  border: 1px solid var(--barnav-border-color);
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-nav__impact-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: var(--barnav-btn-text-color);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+}
+
+/* Panneau Points Impact : badge + barre de niveau dans la navbar */
+.impact-nav-panel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  min-width: 0;
+  border: none;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, var(--color-sand-40) 0%, var(--color-sand-40) 100%);
+  border: 1px solid var(--color-sand-60);
+  cursor: pointer;
+  color: var(--color-green);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.impact-nav-panel:hover {
+  background: linear-gradient(135deg, var(--color-sand-60) 0%, var(--color-sand-60) 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.impact-nav-panel--open {
+  background: linear-gradient(135deg, var(--color-sand-60) 0%, var(--color-sand-60) 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.impact-nav-panel--pulse .impact-nav-panel__badge {
+  animation: smart-nav-badge-pulse 1.5s ease-in-out infinite;
+}
+
+.impact-nav-panel__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.impact-nav-panel__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.impact-nav-panel__badge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 1.25em;
+  text-align: center;
+}
+
+.impact-nav-panel__level-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-green);
+  white-space: nowrap;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.impact-nav-panel__level-bar {
+  width: 36px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-green-20);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.impact-nav-panel__level-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-sand-mid), var(--color-sand-dark));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.barnav .floating-nav__dashboard-btn {
+  min-height: 44px;
+  padding: 8px 12px;
+}
+
+.floating-nav__dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  min-height: 30px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--barnav-btn-text-color);
+  background: var(--color-sand-60);
+  border: 1px solid var(--color-sand-60);
+  border-radius: 0.65rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.floating-nav__dashboard-btn:hover {
+  background: var(--color-sand-40);
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-nav__dashboard-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-nav__dashboard-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.floating-nav__dashboard-label {
+  font-size: 0.78rem;
+}
+
+/* Bouton Rechercher (même style que Tableau de bord) */
+.floating-nav__search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--barnav-btn-text-color);
+  background: var(--color-sand-60);
+  border: 1px solid var(--color-sand-60);
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.floating-nav__search-btn:hover {
+  background: var(--color-sand-40);
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-nav__search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-nav__search-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.floating-nav__search-label {
+  font-size: 0.85rem;
+}
+
+/* Impact dropdown compact – même style glass beige/sable que les autres onglets */
+.impact-dropdown__total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.impact-dropdown__points {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-nav-dropdown-text);
+}
+
+.impact-dropdown__label {
+  font-size: 0.85rem;
+  color: var(--color-nav-dropdown-text-muted);
+}
+
+.impact-dropdown__level {
+  padding: 0 16px 12px;
+}
+
+.impact-dropdown__level-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-nav-dropdown-text);
+  background: linear-gradient(135deg, var(--color-sand-60) 0%, var(--color-sand-60) 100%);
+  border: 1px solid var(--color-nav-dropdown-glass-border);
+  border-radius: 999px;
+}
+
+.impact-dropdown__progress {
+  padding: 0 16px 16px;
+}
+
+.impact-dropdown__progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-nav-dropdown-divider);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.impact-dropdown__progress-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-sand), var(--color-sand-mid));
+  border-radius: 999px;
+}
+
+.impact-dropdown__progress-text {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-nav-dropdown-text-muted);
+}
+
+/* Bloc statistiques dans le dropdown */
+.impact-dropdown__stats {
+  padding: 12px 16px 0;
+  border-top: 1px solid var(--color-nav-dropdown-divider);
+}
+
+.impact-dropdown__stats-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-nav-dropdown-text-muted);
+  margin-bottom: 8px;
+}
+
+.impact-dropdown__stats-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.impact-dropdown__stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 0.85rem;
+}
+
+.impact-dropdown__stat-label {
+  color: var(--color-nav-dropdown-text-muted);
+}
+
+.impact-dropdown__stat-value {
+  font-weight: 700;
+  color: var(--color-nav-dropdown-text);
+}
+
+/* Options futur jeu */
+.impact-dropdown__future {
+  padding: 12px 16px 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--color-nav-dropdown-divider);
+  background: var(--color-nav-dropdown-hover);
+  border-radius: 0.5rem;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.impact-dropdown__future-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-nav-dropdown-text);
+  margin-bottom: 4px;
+}
+
+.impact-dropdown__future-teaser {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-nav-dropdown-text-muted);
+  line-height: 1.4;
+}
+
+/* Nom utilisateur et bouton Publier plus compacts dans la barre */
+.floating-nav .layout-user {
+  font-size: 0.8rem;
+  font-weight: 600;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.floating-nav .layout-publish-btn {
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .floating-nav {
+    min-height: 64px;
+    gap: 8px;
+  }
+
+  .floating-nav__action-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .floating-nav__action-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .impact-nav-panel__level-label {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-nav-wrap {
+    max-width: calc(100% - 16px);
+    padding: 0 8px;
+  }
+
+  .floating-nav {
+    min-height: 58px;
+    padding: 6px 10px;
+  }
+
+  .floating-nav--compact {
+    min-height: 52px;
+  }
+}
+
+/* Widget Impact gamifié sous Tableau de bord */
+.floating-nav__center .impact-widget-nav {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Lisible sur fond clair navbar */
+.floating-nav .impact-widget-nav {
+  background: var(--color-green-10);
+  color: var(--color-green);
+}
+
+.floating-nav .impact-widget-nav [style*="fontWeight"] {
+  color: inherit;
+}
+
+/* Animation légère au level up */
+.impact-widget-nav--levelup {
+  animation: impact-widget-pulse 0.8s ease;
+}
+
+@keyframes impact-widget-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}

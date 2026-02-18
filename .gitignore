@@ -1,0 +1,18 @@
+# Données et dépendances
+node_modules
+backend/node_modules
+frontend/node_modules
+backend/data
+backend/uploads
+*.db
+debug.log
+.cursor
+
+# Variables d'environnement (clés API, Supabase, JWT, etc.) – ne jamais commiter
+.env
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.local
+backend/.env
+*.pem

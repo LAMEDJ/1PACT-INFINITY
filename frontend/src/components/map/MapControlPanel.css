@@ -1,0 +1,340 @@
+/* Module GPS & Itinéraire – style glass transparent, boutons beige sable */
+
+.map-gps-panel {
+  flex-shrink: 0;
+  padding: 1rem 1rem 1.25rem;
+  margin: 0 0.75rem 0.75rem;
+  background: var(--color-sand-40);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 1rem;
+  border: 1px solid var(--color-sand-60);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.map-gps-panel__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-green);
+  margin: 0 0 0.25rem;
+}
+
+.map-gps-panel__subtitle {
+  font-size: 0.85rem;
+  color: var(--color-green);
+  margin: 0 0 1rem;
+}
+
+.map-gps-panel__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.map-gps-panel__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.map-gps-panel__label > span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-green);
+}
+
+.map-gps-panel__input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.map-gps-panel__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-sand-60);
+  background: var(--color-sand-60);
+  color: var(--color-green);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.map-gps-panel__input::placeholder {
+  color: var(--color-green);
+  opacity: 0.85;
+}
+
+.map-gps-panel__input:focus {
+  outline: none;
+  border-color: var(--color-green);
+  box-shadow: var(--shadow-focus);
+}
+
+.map-gps-panel__input:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Toggle modes transport */
+.map-gps-panel__transport {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.map-gps-panel__transport-btn {
+  padding: 0.45rem 0.85rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-sand-40);
+  color: var(--color-green);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-gps-panel__transport-btn:hover {
+  background: var(--color-sand-60);
+  color: var(--color-green);
+}
+
+.map-gps-panel__transport-btn.active {
+  background: var(--color-sand-60);
+  color: var(--color-green);
+}
+
+.map-gps-panel__actions {
+  margin-bottom: 0.75rem;
+}
+
+.map-gps-panel__btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-gps-panel__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.map-gps-panel__btn:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.map-gps-panel__btn--geo {
+  background: var(--gradient-cta);
+  color: var(--color-green);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-green);
+}
+
+.map-gps-panel__btn--geo:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-focus);
+}
+
+.map-gps-panel__btn--cta {
+  width: 100%;
+  background: var(--color-green);
+  color: var(--color-sand);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-sand);
+}
+
+.map-gps-panel__btn--cta:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-focus);
+}
+
+.map-gps-panel__btn--track {
+  background: var(--color-sand-mid);
+  color: var(--color-green);
+  border: 1px solid var(--color-green);
+}
+
+.map-gps-panel__btn--stop {
+  background: var(--color-green-hover);
+  color: var(--color-sand);
+  border: 1px solid var(--color-sand);
+}
+
+.map-gps-panel__btn--secondary {
+  background: var(--color-sand-40);
+  color: var(--color-green);
+  border: 1px solid var(--color-sand-60);
+}
+
+.map-gps-panel__btn--secondary:hover:not(:disabled) {
+  background: var(--color-sand-60);
+}
+
+.map-gps-panel__btn--link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-green);
+  background: transparent;
+  border: 1px solid var(--color-green);
+}
+
+.map-gps-panel__btn--link:hover {
+  background: var(--color-sand-40);
+}
+
+/* Auto-complétion adresses */
+.map-gps-panel__suggestions {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius);
+  background: var(--color-sand);
+  border: 1px solid var(--color-sand-60);
+  box-shadow: var(--shadow-soft);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.map-gps-panel__suggestion {
+  width: 100%;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--color-green);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-sand-60);
+}
+
+.map-gps-panel__suggestion:last-child {
+  border-bottom: none;
+}
+
+.map-gps-panel__suggestion:hover {
+  background: var(--color-sand-40);
+}
+
+.map-gps-panel__suggestion--loading {
+  font-style: italic;
+  color: var(--color-green);
+  cursor: default;
+}
+
+.map-gps-panel__swap-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.map-gps-panel__btn--swap {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: var(--color-green);
+  border: none;
+  text-decoration: underline;
+}
+
+.map-gps-panel__btn--swap:hover {
+  color: var(--color-green);
+}
+
+/* Erreur */
+.map-gps-panel__error {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--color-green-20);
+  border: 1px solid var(--color-green);
+  color: var(--color-sand);
+  font-size: 0.85rem;
+}
+
+/* Résultat itinéraire */
+.map-gps-panel__result {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-sand-60);
+}
+
+.map-gps-panel__stats {
+  display: flex;
+  gap: 1rem;
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-green);
+}
+
+.map-gps-panel__mode-chip {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sand-40);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.map-gps-panel__remaining {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-green);
+}
+
+.map-gps-panel__result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Mobile compact */
+.map-gps-panel--compact {
+  padding: 0.75rem 1rem 1rem;
+  margin: 0 0.5rem 0.5rem;
+}
+
+.map-gps-panel--compact .map-gps-panel__title {
+  font-size: 1.1rem;
+}
+
+.map-gps-panel--compact .map-gps-panel__input-row {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.map-gps-panel--compact .map-gps-panel__transport {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.map-gps-panel--compact .map-gps-panel__transport-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .map-gps-panel {
+    margin: 0 0.5rem 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  .map-gps-panel__result-actions {
+    flex-direction: column;
+  }
+  .map-gps-panel__result-actions .map-gps-panel__btn {
+    width: 100%;
+  }
+}

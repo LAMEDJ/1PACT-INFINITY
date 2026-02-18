@@ -1,0 +1,231 @@
+/* Page d'accueil – style cohérent avec le design system 1PACT */
+
+.accueil-page {
+  min-height: 100%;
+  background: transparent;
+}
+
+.accueil-page-inner {
+  padding: 1.25rem 1.25rem calc(var(--nav-height) + 2rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Landing premium : contenu plus large, spacing généreux */
+.accueil-page--landing {
+  min-height: 100%;
+}
+
+.accueil-page-inner--landing {
+  max-width: 100%;
+  padding: 1rem 1rem calc(var(--nav-height) + 2.5rem);
+}
+
+@media (min-width: 768px) {
+  .accueil-page-inner--landing {
+    padding: 1.5rem 1.5rem calc(var(--nav-height) + 3rem);
+  }
+}
+
+/* Bloc hero (titre + sous-titre) */
+.accueil-hero {
+  text-align: center;
+  padding: 1.5rem 0 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.accueil-hero--minimal {
+  padding: 2rem 0 1rem;
+}
+
+.accueil-hero-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.accueil-hero-title {
+  color: var(--color-panel-text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.accueil-hero-subtitle {
+  color: var(--color-panel-text-secondary);
+  font-size: 1rem;
+  opacity: 0.95;
+  margin-bottom: 0.75rem;
+}
+
+.accueil-hero-user,
+.accueil-hero-hint {
+  color: var(--color-panel-text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.accueil-hero-user strong {
+  color: var(--color-panel-text-primary);
+}
+
+/* CTA vers le Fil */
+.accueil-cta-fil {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.accueil-cta-fil .accueil-cta-primary {
+  margin: 0 auto;
+}
+
+/* Titre de section (conservé pour cohérence) */
+.accueil-section-title {
+  color: var(--color-panel-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Grille d’accès rapides (Carte, Fil, Messages, Profil) */
+.accueil-quick-nav {
+  margin-bottom: 1.5rem;
+}
+
+.accueil-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.accueil-quick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0.75rem;
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  transition: transform var(--duration-smooth) var(--ease-smooth),
+    box-shadow var(--duration-smooth) var(--ease-smooth);
+  text-align: center;
+}
+
+.accueil-quick-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.accueil-quick-card:active {
+  transform: translateY(0);
+}
+
+.accueil-quick-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.accueil-quick-label {
+  color: var(--color-panel-text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.accueil-quick-desc {
+  color: var(--color-panel-text-secondary);
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Section quêtes */
+.accueil-quests {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+}
+
+.accueil-quest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+}
+
+.accueil-quest-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-panel-text-primary);
+  font-size: 0.9rem;
+}
+
+.accueil-quest-item:last-child {
+  border-bottom: none;
+}
+
+.accueil-quest-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.accueil-quest-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  min-width: 0;
+}
+
+.accueil-quest-reward {
+  color: var(--color-panel-text-secondary);
+  font-size: 0.8rem;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+/* Boutons CTA */
+.accueil-cta-primary,
+.accueil-cta-secondary {
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-smooth) var(--ease-smooth),
+    box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.accueil-cta-primary {
+  background: var(--gradient-cta);
+  color: var(--color-off-white);
+  box-shadow: var(--shadow-card);
+}
+
+.accueil-cta-primary:hover {
+  box-shadow: var(--shadow-soft);
+  transform: scale(1.02);
+}
+
+.accueil-cta-primary:active {
+  transform: scale(0.98);
+}

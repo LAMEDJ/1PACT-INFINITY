@@ -1,0 +1,106 @@
+/* Widget Impact étendu : badge + progression 24 pts, glow si proche */
+.impact-extended {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.impact-extended:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+.impact-extended--glow {
+  box-shadow: var(--shadow-card), 0 0 24px rgba(34, 197, 94, 0.2);
+}
+
+.impact-extended--glow:hover {
+  box-shadow: var(--shadow-soft), 0 0 32px rgba(34, 197, 94, 0.25);
+}
+
+.impact-extended__content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.impact-extended__badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.impact-extended__badge-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.impact-extended__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-panel-text-primary);
+  margin: 0 0 2px;
+}
+
+.impact-extended__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+  margin: 0;
+}
+
+.impact-extended__level {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-panel-text-secondary);
+}
+
+.impact-extended__level-badge {
+  font-weight: 600;
+  color: var(--color-impact-green);
+}
+
+.impact-extended__progress-wrap {
+  margin-top: 0.75rem;
+}
+
+.impact-extended__progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.impact-extended__progress-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-impact-green));
+  border-radius: var(--radius-pill);
+}
+
+.impact-extended--glow .impact-extended__progress-fill {
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+}
+
+.impact-extended__progress-text {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-secondary);
+  margin: 0.5rem 0 0;
+  opacity: 0.95;
+}
+
+.impact-extended__progress-text strong {
+  color: var(--color-impact-green);
+}

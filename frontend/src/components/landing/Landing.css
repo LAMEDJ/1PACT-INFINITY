@@ -1,0 +1,175 @@
+/**
+ * Styles communs landing premium – cohérents avec le design system 1PACT.
+ * Animations 200–400ms, ease-out, rounded-2xl, glass subtil.
+ */
+
+/* Hero */
+.landing-hero {
+  position: relative;
+  min-height: 280px;
+  margin-bottom: 4rem;
+}
+
+.landing-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-off-white);
+  background: var(--gradient-cta);
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+}
+
+.landing-cta-primary:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-focus);
+}
+
+.landing-cta-primary:active {
+  transform: scale(0.98);
+}
+
+.landing-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-panel-text-primary);
+  background: var(--color-sand-40);
+  border: 1px solid var(--color-sand-60);
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.landing-cta-secondary:hover {
+  background: var(--color-sand-60);
+  transform: scale(1.02);
+}
+
+/* Sections */
+.landing-section {
+  padding: 3rem 1rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.landing-section--glass {
+  padding: 3rem 1.5rem 4rem;
+  border-radius: var(--radius-card-lg);
+  background: var(--color-card-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-sand-40);
+  box-shadow: var(--shadow-card);
+}
+
+.landing-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+}
+
+/* Cartes */
+.landing-card {
+  padding: 1.75rem;
+  border-radius: var(--radius-card-lg);
+  background: var(--color-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-sand-40);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s var(--ease-smooth), transform 0.2s var(--ease-smooth);
+}
+
+.landing-card:hover {
+  box-shadow: var(--shadow-soft-lg);
+}
+
+.landing-card--glow:hover {
+  box-shadow: var(--shadow-soft-lg), 0 0 0 1px var(--color-green-20);
+}
+
+/* CTA final */
+.landing-cta-final {
+  padding: 4rem 1.5rem 5rem;
+  margin-top: 2rem;
+}
+
+.landing-cta-final-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  border-radius: var(--radius-card-lg);
+  background: linear-gradient(145deg, var(--color-deep-green) 0%, var(--color-deep-green-light) 100%);
+  border: 1px solid var(--color-sand-60);
+  box-shadow: var(--shadow-card), 0 0 60px var(--color-green-40);
+  text-align: center;
+}
+
+.landing-cta-final-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-sand);
+  margin: 0 0 0.75rem;
+  line-height: 1.3;
+}
+
+.landing-cta-final-sub {
+  font-size: 0.95rem;
+  color: var(--color-mist-light);
+  opacity: 0.95;
+  margin: 0 0 1.75rem;
+}
+
+.landing-cta-final-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-off-white);
+  background: var(--gradient-cta);
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s, box-shadow 0.25s;
+}
+
+.landing-cta-final-btn:hover {
+  transform: scale(1.04);
+  box-shadow: var(--shadow-focus);
+}
+
+.landing-cta-final-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .landing-section {
+    padding: 2rem 1rem 3rem;
+  }
+  .landing-section-title {
+    font-size: 1.5rem;
+  }
+  .landing-cta-final-inner {
+    padding: 2rem 1.25rem;
+  }
+  .landing-cta-final-title {
+    font-size: 1.25rem;
+  }
+}

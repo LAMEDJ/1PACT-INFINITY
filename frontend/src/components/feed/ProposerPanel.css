@@ -1,0 +1,100 @@
+.proposer-panel {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+}
+
+.proposer-panel__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.proposer-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proposer-panel__label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-panel-text-primary);
+}
+
+.proposer-panel__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.proposer-panel__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-panel-text-primary);
+  background: var(--color-sand-40);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.proposer-panel__cat:hover {
+  background: var(--color-sand-60);
+}
+
+.proposer-panel__cat.active {
+  background: var(--color-primary);
+  color: var(--color-off-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.proposer-panel__cat-icon {
+  font-size: 1.1rem;
+}
+
+.proposer-panel__select {
+  padding: 12px 14px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--color-panel-text-primary);
+  background: var(--color-sand-40);
+  cursor: pointer;
+}
+
+.proposer-panel__btn {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-green);
+  background: var(--gradient-cta);
+  border: 2px solid var(--color-green);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 0.5rem;
+}
+
+.proposer-panel__btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft-lg);
+}
+
+.proposer-panel__btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.proposer-panel__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,15 @@
+Fond d'écran principal immersif (BackgroundImage)
+=================================================
+
+Image exacte utilisée : bg-main.png (dans ce dossier public/)
+
+Règles appliquées :
+- Image exacte fournie, aucun gradient, aucune couleur de remplacement
+- Aucun filtre ni modification de teinte
+- background-size: cover ; background-position: center center ; no-repeat
+- Overlay noir très léger (12% opacity) pour lisibilité UI uniquement
+- Parallaxe subtil (desktop), désactivé sur mobile et si prefers-reduced-motion
+
+Pour remplacer le fond : remplacez bg-main.png par votre image (même nom)
+ou modifiez l'URL dans frontend/src/components/BackgroundImage.css (.background-image__layer)
+et dans index.css (.background-image-fallback).

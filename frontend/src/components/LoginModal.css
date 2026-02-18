@@ -1,0 +1,114 @@
+.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-green-40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+/* Account dropdown / modal – texte en beige/sable chaud (#DBC6B8 / #E9DDD2) */
+.login-modal {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+  color: var(--color-panel-text-primary);
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--color-panel-text-primary);
+  background: none;
+  padding: 4px 8px;
+}
+
+.login-modal h2 {
+  margin-bottom: 1rem;
+  color: var(--color-panel-text-primary);
+  font-size: 1.25rem;
+}
+
+.login-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.login-tabs button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--color-panel-text-secondary);
+  background: var(--color-green-40);
+  border: 2px solid transparent;
+}
+
+.login-tabs button.active {
+  border-color: var(--color-panel-text-primary);
+  background: var(--color-sand-40);
+  color: var(--color-panel-text-primary);
+}
+
+.login-type {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-panel-text-secondary);
+}
+
+.login-type label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.login-modal input[type="email"],
+.login-modal input[type="password"],
+.login-modal input[type="text"],
+.login-modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 0.75rem;
+  border: 2px solid var(--color-sand-60);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--color-panel-text-primary);
+  background: var(--color-card);
+}
+
+.login-modal input::placeholder,
+.login-modal textarea::placeholder {
+  color: var(--color-panel-text-secondary);
+  opacity: 0.8;
+}
+
+.login-modal input:focus,
+.login-modal textarea:focus {
+  outline: none;
+  border-color: var(--color-panel-text-primary);
+}
+
+.login-error {
+  color: var(--color-green-hover);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-modal button[type="submit"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "1pact-infinity",
+  "private": true,
+  "description": "1PACT – Explore, rencontre, vis ce qui compte",
+  "scripts": {
+    "dev": "node scripts/run-npm.js run dev --prefix frontend",
+    "dev:frontend": "node scripts/run-npm.js run dev --prefix frontend",
+    "dev:backend": "node scripts/run-npm.js run dev --prefix backend",
+    "build": "node scripts/run-npm.js run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  }
+}

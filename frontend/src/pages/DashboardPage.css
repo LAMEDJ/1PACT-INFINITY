@@ -1,0 +1,116 @@
+.dashboard-page {
+  background: transparent;
+}
+
+.dashboard-desc {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-panel-text-secondary);
+}
+
+.dashboard-stats h3,
+.dashboard-posts h3,
+.dashboard-billing h3,
+.dashboard-notifications h3 {
+  font-size: 1rem;
+  color: var(--color-panel-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.dashboard-stats {
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.dashboard-stat-card {
+  background: var(--color-card);
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  color: var(--color-panel-text-primary);
+}
+
+.dashboard-stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-panel-text-primary);
+}
+
+.dashboard-stat-label {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.95;
+}
+
+.dashboard-new-post {
+  margin-bottom: 1rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.dashboard-post-list {
+  list-style: none;
+}
+
+.dashboard-post-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-card);
+  color: var(--color-panel-text-primary);
+}
+
+.dashboard-post-text {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+  max-width: 100%;
+  color: var(--color-panel-text-primary);
+}
+
+.dashboard-post-meta {
+  font-size: 0.8rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.9;
+}
+
+.dashboard-post-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.dashboard-post-btn {
+  font-size: 0.85rem;
+  color: var(--color-panel-text-primary);
+  font-weight: 600;
+  padding: 4px 10px;
+}
+
+.dashboard-post-btn.danger {
+  color: var(--color-green-hover);
+}
+
+.dashboard-posts,
+.dashboard-billing,
+.dashboard-notifications {
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-billing-desc {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-panel-text-secondary);
+  opacity: 0.95;
+}

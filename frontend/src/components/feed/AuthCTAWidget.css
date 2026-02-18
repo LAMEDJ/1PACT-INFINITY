@@ -1,0 +1,27 @@
+.auth-cta-widget {
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.auth-cta-widget__link {
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  text-decoration: none;
+  background: var(--gradient-cta);
+  color: var(--color-text-on-beige);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration-smooth) var(--ease-smooth),
+    box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.auth-cta-widget__link:hover {
+  box-shadow: var(--shadow-soft);
+  transform: scale(1.02);
+}
