@@ -117,6 +117,14 @@ L’app fonctionne sans Supabase : l’API actuelle utilise le stockage JSON. Su
 
 ---
 
+## Déploiement (GitHub + Vercel)
+
+Le projet est prêt pour GitHub et Vercel. Voir **[DEPLOY.md](DEPLOY.md)** pour :
+- Créer le dépôt GitHub et pousser le code
+- Connecter le dépôt à Vercel et déployer le frontend
+
+---
+
 ## Suite possible
 
 - Notifications push, géocodage pour les nouvelles associations, modération des commentaires.
