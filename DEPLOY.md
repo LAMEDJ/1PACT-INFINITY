@@ -1,24 +1,33 @@
 # Déployer 1PACT sur GitHub et Vercel
 
-## 1. GitHub
+Le projet est prêt : Git (branche `main`), `.gitignore`, CI (`.github/workflows/vercel-deploy.yml`), `frontend/vercel.json`.
 
-### Créer le dépôt sur GitHub
-1. Va sur [github.com/new](https://github.com/new).
-2. Nom du dépôt : `1pact-infinity` (ou autre).
-3. Ne coche pas "Initialize with README" (le projet a déjà des fichiers).
-4. Clique sur **Create repository**.
+## Option rapide (script)
 
-### Pousser le code
-Dans PowerShell, à la racine du projet :
+Une fois connecté (une seule fois) : `gh auth login` et `npx vercel login` (depuis `frontend`).
 
 ```powershell
 cd "c:\Users\bryan\Documents\1PACT INFINITY"
-git remote add origin https://github.com/TON_USERNAME/1pact-infinity.git
-git branch -M main
-git push -u origin main
+.\scripts\deploy-github-vercel.ps1
 ```
 
-Remplace `TON_USERNAME` et `1pact-infinity` par ton compte GitHub et le nom du dépôt.
+Avec token GitHub : `$env:GH_TOKEN = "ghp_xxx"; .\scripts\deploy-github-vercel.ps1`
+
+## 1. GitHub
+
+### Créer le dépôt et pousser (avec GitHub CLI)
+```powershell
+gh auth login   # une seule fois
+gh repo create 1pact-infinity --public --source=. --remote=origin --push
+```
+
+### Ou manuellement
+1. Crée le dépôt sur [github.com/new](https://github.com/new) (ex. `1pact-infinity`, sans README).
+2. À la racine du projet :
+```powershell
+git remote add origin https://github.com/TON_USERNAME/1pact-infinity.git
+git push -u origin main
+```
 
 ---
 
