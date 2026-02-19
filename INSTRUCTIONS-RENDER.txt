@@ -1,0 +1,22 @@
+FAIRE LES ÉTAPES (déploiement backend + Vercel)
+==============================================
+
+1. RENDER (page ouverte dans ton navigateur)
+   - Connecte-toi à Render (ou crée un compte).
+   - Vérifie le repo : LAMEDJ/1PACT-INFINITY.
+   - Clique sur "Deploy" / "Apply" pour créer le service 1pact-api.
+   - Quand le service est créé : ouvre-le → onglet "Environment".
+   - Ajoute ces 2 variables (copie les valeurs depuis ton fichier backend\.env) :
+     * SUPABASE_URL
+     * SUPABASE_SERVICE_ROLE_KEY
+   - Sauvegarde. Render redéploiera. NOTE L'URL du service (ex. https://1pact-api-xxxx.onrender.com).
+
+2. VERCEL (brancher l'URL du backend)
+   Ouvre PowerShell à la racine du projet (c:\Users\bryan\Documents\1PACT INFINITY) et lance :
+
+   .\scripts\set-backend-url-and-redeploy.ps1 "https://1pact-api-XXXX.onrender.com"
+
+   (Remplace par l'URL notée à l'étape 1, SANS /api à la fin.)
+
+3. C'EST FINI
+   Le site Vercel utilisera le backend Render. Ouvre ton site pour vérifier.
