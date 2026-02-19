@@ -117,11 +117,14 @@ L’app fonctionne sans Supabase : l’API actuelle utilise le stockage JSON. Su
 
 ---
 
-## Déploiement (GitHub + Vercel)
+## Déploiement (GitHub + Vercel + Render)
 
-Le projet est prêt pour GitHub et Vercel. Voir **[DEPLOY.md](DEPLOY.md)** pour :
-- Créer le dépôt GitHub et pousser le code
-- Connecter le dépôt à Vercel et déployer le frontend
+- **Frontend** : voir **[DEPLOY.md](DEPLOY.md)** (GitHub, Vercel).
+- **Backend (API)** : déploiement en un clic sur Render :
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/LAMEDJ/1PACT-INFINITY)
+
+Après le déploiement Render, ajoute dans le service **1pact-api** (Environment) : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`. Puis lance `.\scripts\set-backend-url-and-redeploy.ps1 "https://ton-backend.onrender.com"`. Détails dans **[BACKEND-DEPLOY.md](BACKEND-DEPLOY.md)**.
 
 ---
 
