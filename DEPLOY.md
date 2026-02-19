@@ -39,14 +39,14 @@ Le projet **frontend** est déjà en ligne : https://frontend-self-kappa-74.verc
 Pour que chaque push sur `main` redéploie automatiquement :
 1. Va sur [vercel.com](https://vercel.com) → ton projet **frontend**.
 2. **Settings** → **Git** → **Connect Git Repository**.
-3. Choisis ton dépôt GitHub (ex. `1pact-infinity`) et autorise Vercel si demandé.
+3. Choisis ton dépôt GitHub (**LAMEDJ/1PACT-INFINITY** ou ex. `1pact-infinity`) et autorise Vercel si demandé.
 4. **Root Directory** : mets `frontend` (Edit → saisir `frontend` → Save).
 5. Les prochains push sur `main` déclencheront un déploiement automatique.
 
 ### Ou importer le dépôt comme nouveau projet
 1. Va sur [vercel.com](https://vercel.com) et connecte-toi (avec GitHub si possible).
 2. **Add New** → **Project**.
-3. **Import** le dépôt GitHub `1pact-infinity`.
+3. **Import** le dépôt GitHub **LAMEDJ/1PACT-INFINITY** (ou `1pact-infinity`).
 4. **Important** : définis **Root Directory** sur `frontend`.
 5. Vercel détecte Vite. Build : `npm run build`, Output : `dist`.
 6. Variables d’environnement (Settings → Environment Variables) :
@@ -57,4 +57,4 @@ Pour que chaque push sur `main` redéploie automatiquement :
 Le site sera en ligne sur une URL du type `https://1pact-infinity-xxx.vercel.app`.
 
 ### Backend (API)
-Le backend Node (dossier `backend`) ne tourne pas sur Vercel. Pour le mettre en production, utilise par exemple **Railway**, **Render** ou **Fly.io**, puis indique son URL dans `VITE_API_URL` sur Vercel.
+Le backend Node (dossier `backend`) ne tourne pas sur Vercel. Voir **[BACKEND-DEPLOY.md](BACKEND-DEPLOY.md)** : déploiement sur **Render** (Blueprint), puis `.\scripts\set-backend-url-and-redeploy.ps1 "https://ton-backend.onrender.com"` pour brancher l’URL sur Vercel.
