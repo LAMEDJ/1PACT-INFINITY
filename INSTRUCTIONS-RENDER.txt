@@ -12,11 +12,10 @@ FAIRE LES ÉTAPES (déploiement backend + Vercel)
    - Sauvegarde. Render redéploiera. NOTE L'URL du service (ex. https://1pact-api-xxxx.onrender.com).
 
 2. VERCEL (brancher l'URL du backend)
-   Ouvre PowerShell à la racine du projet (c:\Users\bryan\Documents\1PACT INFINITY) et lance :
-
-   .\scripts\set-backend-url-and-redeploy.ps1 "https://1pact-api-XXXX.onrender.com"
-
-   (Remplace par l'URL notée à l'étape 1, SANS /api à la fin.)
+   - Ouvre le fichier backend-url.txt à la racine du projet.
+   - Remplace le contenu par l'URL notée à l'étape 1 (ex. https://1pact-api-xxxx.onrender.com), sauvegarde.
+   - Dans PowerShell à la racine : .\scripts\finish-backend.ps1
+   (Ou en une ligne : .\scripts\set-backend-url-and-redeploy.ps1 "https://1pact-api-XXXX.onrender.com")
 
 3. C'EST FINI
    Le site Vercel utilisera le backend Render. Ouvre ton site pour vérifier.
