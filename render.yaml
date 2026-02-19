@@ -1,0 +1,19 @@
+# Déploiement du backend 1PACT sur Render
+# Connexion : render.com → New → Web Service → Connect ce repo → Root Directory: (vide, ce fichier est à la racine)
+# Ou New → Blueprint et sélectionner ce fichier.
+
+services:
+  - type: web
+    name: 1pact-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://frontend-self-kappa-74.vercel.app
+      # Ajoute SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY dans le dashboard Render (Environment)
